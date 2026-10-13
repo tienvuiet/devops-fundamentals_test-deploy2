@@ -1,0 +1,26 @@
+services:
+  backend-department:
+    image: tienvuviet/devops-fundamentals_test-deploy2:latest
+    container_name: backend-department
+    restart: always
+    ports:
+      - "8080:8080"
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:mysql://department-employee-db:3306/department-employee?createDatabaseIfNotExist=true&useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=Asia/Ho_Chi_Minh
+      SPRING_DATASOURCE_USERNAME: root
+      SPRING_DATASOURCE_PASSWORD: 123456
+    depends_on:
+      - department-employee-db
+  department-employee-db:
+    image: mysql:8.4
+    container_name: department-employee-db
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: 123456
+      MYSQL_DATABASE: department-employee
+    #    ports:
+    #        - "3307:3306"
+    volumes:
+      - department-employee-db-data:/var/lib/mysql
+volumes:
+  department-employee-db-data:
