@@ -24,7 +24,7 @@ public class ProductController {
         return new ResponseEntity<>(
                 new ApiDataResponse<>(
                         true,
-                        "Get a list of successful products",
+                        "Get a list of successful products lay ok roi nhe",
                         productService.getProducts(),
                         HttpStatus.OK
                 ), HttpStatus.OK
